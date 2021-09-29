@@ -1,0 +1,8 @@
+name: lint-test
+on: push
+jobs:
+  my-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: run lint
+        run: make lint
