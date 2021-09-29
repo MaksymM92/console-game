@@ -5,4 +5,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: run lint
-        run: echo "test" 
+        run: make lint 
