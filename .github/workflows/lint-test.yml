@@ -1,4 +1,4 @@
-name: lint-test
+name: Lint-test
 on: push
 jobs:
   my-job:
