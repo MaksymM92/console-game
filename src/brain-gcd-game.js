@@ -4,34 +4,21 @@ function generateRandomNumber(max) {
   return Math.floor(Math.random() * max);
 }
 
-function calcEquation(operation, firstNumber, secondNumber) {
-  let value;
-  switch (operation) {
-    case '+':
-      value = firstNumber + secondNumber;
-      break;
-    case '-':
-      value = firstNumber - secondNumber;
-      break;
-    case '*':
-      value = firstNumber * secondNumber;
-      break;
-    default:
-      break;
+function calcGcd(firstNum, secondNum) {
+  if (!secondNum) {
+    return firstNum;
   }
-  return value;
+  return calcGcd(secondNum, firstNum % secondNum);
 }
 
 function initGame(name) {
   let answersCount = 0;
-  const operations = ['*', '-', '+'];
+
   while (answersCount < 3) {
-    const operation = operations[generateRandomNumber(2)];
     const firstNumber = generateRandomNumber(101);
     const secondNumber = generateRandomNumber(101);
-    const correctAnswer = calcEquation(operation, firstNumber, secondNumber);
-    const question = `${firstNumber}${operation}${secondNumber}`;
-    console.log('What is the result of the expression?');
+    const correctAnswer = calcGcd(firstNumber, secondNumber);
+    const question = `${firstNumber} ${secondNumber}`;
     const userAnswer = readlineSync.question(`Question: ${question}\n`).toLowerCase().trim();
     console.log(`Your answer: ${userAnswer}`);
 
@@ -55,6 +42,7 @@ function initGame(name) {
 function greatUser() {
   const name = readlineSync.question('May I have your name?');
   console.log(`Hello, ${name}!`);
+  console.log('Find the greatest common divisor of given numbers.');
   initGame(name);
 }
 
