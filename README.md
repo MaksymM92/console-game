@@ -6,3 +6,5 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/dfc50c2d88cd46d069c1/test_coverage)](https://codeclimate.com/github/hexlet-boilerplates/nodejs-package/test_coverage)
 ### Brain even game
 [![asciicast](https://asciinema.org/a/FHfVghQXM7oFBZwlwUAgaLqCQ.svg)](https://asciinema.org/a/FHfVghQXM7oFBZwlwUAgaLqCQ)
+### Brain calc game
+[![asciicast](https://asciinema.org/a/XG4RWcth2tke2H5mH309eWjmC.svg)](https://asciinema.org/a/XG4RWcth2tke2H5mH309eWjmC)
