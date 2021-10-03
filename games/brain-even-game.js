@@ -33,7 +33,7 @@ function initGame(name) {
   }
 
   if (answersCount === 3) {
-    console.log(`Congratulations, ${name}`);
+    console.log(`Congratulations, ${name}!`);
   }
 }
 
