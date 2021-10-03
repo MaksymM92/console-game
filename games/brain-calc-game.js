@@ -14,7 +14,7 @@ function initGame(name) {
     const firstNumber = generateRandomNumber(101);
     const secondNumber = generateRandomNumber(101);
     const correctAnswer = calcEquation(operation, firstNumber, secondNumber);
-    const question = `${firstNumber}${operation}${secondNumber}`;
+    const question = `${firstNumber} ${operation} ${secondNumber}`;
     const userAnswer = getUserAnswer(question);
     console.log(`Your answer: ${userAnswer}`);
 
