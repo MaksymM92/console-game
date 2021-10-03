@@ -15,7 +15,6 @@ function initGame(name) {
     const randomNumber = generateRandomNumber(101);
     const isEvenNum = isEven(randomNumber);
     const userAnswer = getUserAnswer(randomNumber);
-    console.log('userAnswer', isAnswerInvalid(userAnswer));
     console.log(`Your answer: ${userAnswer}`);
 
     if (!isAnswerInvalid(userAnswer)) {
