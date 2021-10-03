@@ -19,7 +19,7 @@ function printWrongInput(name) {
 }
 
 function printWrongAnswer(correctAnswer, userAnswer, name) {
-  console.log(`'${userAnswer}' is wrong answer ;(., Correct answer was '${correctAnswer}'..\nLet's try again, ${name}`);
+  console.log(`'${userAnswer}' is wrong answer ;(., Correct answer was '${correctAnswer}'..\nLet's try again, ${name}!`);
 }
 
 function generateRandomNumber(max) {
