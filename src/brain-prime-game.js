@@ -1,33 +1,34 @@
 import {
   sayHello,
   getUserAnswer,
+  isAnswerInvalid,
+  isPrime,
   generateRandomNumber,
+  printWrongInput,
   printWrongAnswer,
-  generateProgression,
 } from '../utils/utils.js';
 
 function initGame(name) {
   let answersCount = 0;
 
   while (answersCount < 3) {
-    const progressionArray = generateProgression();
-    const droppedNumIndex = generateRandomNumber(9);
-    const correctAnswer = progressionArray[droppedNumIndex];
-    progressionArray[droppedNumIndex] = '..';
-    const question = progressionArray.join(' ');
-    const userAnswer = getUserAnswer(question);
+    const randomNumber = generateRandomNumber(100);
+    const correctAnswer = isPrime(randomNumber) ? 'yes' : 'no';
+    const userAnswer = getUserAnswer(randomNumber);
     console.log(`Your answer: ${userAnswer}`);
 
-    if (+userAnswer !== correctAnswer) {
+    if (!isAnswerInvalid(userAnswer)) {
+      printWrongInput(name);
+      break;
+    }
+    if (correctAnswer !== userAnswer) {
       printWrongAnswer(correctAnswer, userAnswer, name);
       break;
     }
-
-    if (+userAnswer === correctAnswer) {
+    if (correctAnswer === userAnswer) {
       console.log('Correct!');
       answersCount += 1;
     }
-
     if (answersCount === 3) {
       console.log(`Congratulations, ${name}`);
     }
@@ -36,7 +37,7 @@ function initGame(name) {
 
 function greatUser() {
   const name = sayHello();
-  console.log('What number is missing in the progression?');
+  console.log('Answer yes if given number is prime. Otherwise answer no.');
   initGame(name);
 }
 

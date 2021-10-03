@@ -1,26 +1,10 @@
-import readlineSync from 'readline-sync';
-
-function generateRandomNumber(max) {
-  return Math.floor(Math.random() * max);
-}
-
-function calcEquation(operation, firstNumber, secondNumber) {
-  let value;
-  switch (operation) {
-    case '+':
-      value = firstNumber + secondNumber;
-      break;
-    case '-':
-      value = firstNumber - secondNumber;
-      break;
-    case '*':
-      value = firstNumber * secondNumber;
-      break;
-    default:
-      break;
-  }
-  return value;
-}
+import {
+  sayHello,
+  getUserAnswer,
+  generateRandomNumber,
+  printWrongAnswer,
+  calcEquation,
+} from '../utils/utils.js';
 
 function initGame(name) {
   let answersCount = 0;
@@ -31,13 +15,11 @@ function initGame(name) {
     const secondNumber = generateRandomNumber(101);
     const correctAnswer = calcEquation(operation, firstNumber, secondNumber);
     const question = `${firstNumber}${operation}${secondNumber}`;
-    console.log('What is the result of the expression?');
-    const userAnswer = readlineSync.question(`Question: ${question}\n`).toLowerCase().trim();
+    const userAnswer = getUserAnswer(question);
     console.log(`Your answer: ${userAnswer}`);
 
     if (+userAnswer !== correctAnswer) {
-      console.log(`${userAnswer} is wrong answer ;(. Correct answer was ${correctAnswer}.`);
-      console.log(`Let's try again, ${name}!`);
+      printWrongAnswer(correctAnswer, userAnswer, name);
       break;
     }
 
@@ -53,8 +35,8 @@ function initGame(name) {
 }
 
 function greatUser() {
-  const name = readlineSync.question('May I have your name?');
-  console.log(`Hello, ${name}!`);
+  const name = sayHello();
+  console.log('What is the result of the expression?');
   initGame(name);
 }
 

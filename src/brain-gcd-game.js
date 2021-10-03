@@ -1,15 +1,10 @@
-import readlineSync from 'readline-sync';
-
-function generateRandomNumber(max) {
-  return Math.floor(Math.random() * max);
-}
-
-function calcGcd(firstNum, secondNum) {
-  if (!secondNum) {
-    return firstNum;
-  }
-  return calcGcd(secondNum, firstNum % secondNum);
-}
+import {
+  sayHello,
+  getUserAnswer,
+  generateRandomNumber,
+  printWrongAnswer,
+  calcGcd,
+} from '../utils/utils.js';
 
 function initGame(name) {
   let answersCount = 0;
@@ -19,12 +14,11 @@ function initGame(name) {
     const secondNumber = generateRandomNumber(101);
     const correctAnswer = calcGcd(firstNumber, secondNumber);
     const question = `${firstNumber} ${secondNumber}`;
-    const userAnswer = readlineSync.question(`Question: ${question}\n`).toLowerCase().trim();
+    const userAnswer = getUserAnswer(question);
     console.log(`Your answer: ${userAnswer}`);
 
     if (+userAnswer !== correctAnswer) {
-      console.log(`${userAnswer} is wrong answer ;(. Correct answer was ${correctAnswer}.`);
-      console.log(`Let's try again, ${name}!`);
+      printWrongAnswer(correctAnswer, userAnswer, name);
       break;
     }
 
@@ -40,8 +34,7 @@ function initGame(name) {
 }
 
 function greatUser() {
-  const name = readlineSync.question('May I have your name?');
-  console.log(`Hello, ${name}!`);
+  const name = sayHello();
   console.log('Find the greatest common divisor of given numbers.');
   initGame(name);
 }

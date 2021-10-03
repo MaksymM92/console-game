@@ -1,34 +1,33 @@
-import readlineSync from 'readline-sync';
-
-function isAnswerInvalid(answer) {
-  return answer.toLowerCase() !== 'yes' || answer.toLowerCase() !== 'no';
-}
-
-function isEven(value) {
-  return value % 2 === 0 ? 'yes' : 'no';
-}
-
-function generateRandomNumber() {
-  return Math.floor(Math.random() * 101);
-}
+import {
+  sayHello,
+  getUserAnswer,
+  generateRandomNumber,
+  printWrongAnswer,
+  isAnswerInvalid,
+  isEven,
+  printWrongInput,
+} from '../utils/utils.js';
 
 function initGame(name) {
   let answersCount = 0;
 
   while (answersCount < 3) {
-    const randomNumber = generateRandomNumber();
+    const randomNumber = generateRandomNumber(101);
     const isEvenNum = isEven(randomNumber);
-    const userAnswer = readlineSync.question(`Question: ${randomNumber}\n`).toLowerCase().trim();
+    const userAnswer = getUserAnswer(randomNumber);
+    console.log('userAnswer', isAnswerInvalid(userAnswer));
+    console.log(`Your answer: ${userAnswer}`);
+
     if (!isAnswerInvalid(userAnswer)) {
-      console.log(`Sorry, but you enter incorrect answer. Let's try again, ${name}`);
+      printWrongInput(name);
       break;
     }
     if (isEvenNum !== userAnswer) {
-      console.log(`'${userAnswer}' is wrong answer ;(., Correct answer was '${isEvenNum}'..\nLet's try again, ${name}`);
+      printWrongAnswer(isEvenNum, userAnswer, name);
       break;
     }
     if (isEvenNum === userAnswer) {
-      console.log(`Your answer: ${userAnswer}\nCorrect!`);
+      console.log('Correct!');
       answersCount += 1;
     }
   }
@@ -39,8 +38,7 @@ function initGame(name) {
 }
 
 function greatUser() {
-  const name = readlineSync.question('May I have your name?');
-  console.log(`Hello, ${name}!`);
+  const name = sayHello();
   console.log('Answer yes if the number is even, otherwise answer no.');
   initGame(name);
 }
