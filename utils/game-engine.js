@@ -8,10 +8,10 @@ import {
 
 function processAnswer(gameConfig, name) {
   let userAnswer = getUserAnswer(gameConfig.question);
-  userAnswer = gameConfig.anyAnswer ? +userAnswer : userAnswer;
   console.log(`Your answer: ${userAnswer}`);
+  userAnswer = gameConfig.anyAnswer ? +userAnswer : userAnswer;
 
-  if (!gameConfig.anyAnswer && !isAnswerInvalid(userAnswer)) {
+  if ((!gameConfig.anyAnswer && !isAnswerInvalid(userAnswer)) || Number.isNaN(userAnswer)) {
     printWrongInput(name);
     return false;
   }
