@@ -1,7 +1,7 @@
-import readlineSync from 'readline-sync';
+import { sayHello } from '../utils/utils.js';
 
 function greatUser() {
-  const name = readlineSync.question('May I have your name?');
+  const name = sayHello();
   console.log(`Hello, ${name}!`);
 }
 
