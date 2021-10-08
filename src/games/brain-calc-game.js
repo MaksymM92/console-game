@@ -1,8 +1,5 @@
-import {
-  sayHello,
-  generateRandomNumber,
-} from '../../utils/utils.js';
-import beginGame from '../../utils/game-engine.js';
+import { generateRandomNumber } from '../utils.js';
+import beginGame from '../game-engine.js';
 
 function calcEquation(operation, firstNumber, secondNumber) {
   let value;
@@ -22,22 +19,21 @@ function calcEquation(operation, firstNumber, secondNumber) {
   return value;
 }
 
-function generateGameConfig() {
+function generateRoundData() {
   const operations = ['*', '-', '+'];
   const operation = operations[generateRandomNumber(0, operations.length - 1)];
   const firstNumber = generateRandomNumber(0, 101);
   const secondNumber = generateRandomNumber(0, 101);
   return {
     question: `${firstNumber} ${operation} ${secondNumber}`,
-    correctAnswer: calcEquation(operation, firstNumber, secondNumber),
-    anyAnswer: true,
+    correctAnswer: calcEquation(operation, firstNumber, secondNumber).toString(),
   };
 }
 
-function greatUser() {
-  const name = sayHello();
-  console.log('What is the result of the expression?');
-  beginGame(generateGameConfig, name);
+function initGame() {
+  const gameRule = 'What is the result of the expression?';
+  const numberOfQuestions = 3;
+  beginGame(generateRoundData, gameRule, numberOfQuestions);
 }
 
-export default greatUser;
+export default initGame;

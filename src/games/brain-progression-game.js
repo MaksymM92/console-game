@@ -1,8 +1,5 @@
-import {
-  sayHello,
-  generateRandomNumber,
-} from '../../utils/utils.js';
-import beginGame from '../../utils/game-engine.js';
+import { generateRandomNumber } from '../utils.js';
+import beginGame from '../game-engine.js';
 
 function generateProgression(startNumber, step, length) {
   const progression = [startNumber];
@@ -14,7 +11,7 @@ function generateProgression(startNumber, step, length) {
   return progression;
 }
 
-function generateGameConfig() {
+function generateRoundData() {
   const startNumber = generateRandomNumber(0, 100);
   const step = generateRandomNumber(0, 10);
   const progressionArray = generateProgression(startNumber, step, 9);
@@ -23,15 +20,14 @@ function generateGameConfig() {
   progressionArray[droppedNumIndex] = '..';
   return {
     question: progressionArray.join(' '),
-    correctAnswer: answer,
-    anyAnswer: true,
+    correctAnswer: answer.toString(),
   };
 }
 
-function greatUser() {
-  const name = sayHello();
-  console.log('What number is missing in the progression?');
-  beginGame(generateGameConfig, name);
+function initGame() {
+  const gameRule = 'What number is missing in the progression?';
+  const numberOfQuestions = 3;
+  beginGame(generateRoundData, gameRule, numberOfQuestions);
 }
 
-export default greatUser;
+export default initGame;
