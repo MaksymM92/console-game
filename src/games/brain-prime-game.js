@@ -1,5 +1,7 @@
-import { generateRandomNumber } from '../utils.js';
+import generateRandomNumber from '../utils.js';
 import beginGame from '../game-engine.js';
+
+const gameRule = 'Answer yes if given number is prime. Otherwise answer no.';
 
 function isPrime(number) {
   // eslint-disable-next-line no-plusplus
@@ -12,15 +14,13 @@ function isPrime(number) {
 function generateRoundData() {
   const randomNumber = generateRandomNumber(0, 100);
   return {
-    question: `${randomNumber}`,
+    question: randomNumber.toString(),
     correctAnswer: isPrime(randomNumber) ? 'yes' : 'no',
   };
 }
 
 function initGame() {
-  const gameRule = 'Answer yes if given number is prime. Otherwise answer no.';
-  const numberOfQuestions = 3;
-  beginGame(generateRoundData, gameRule, numberOfQuestions);
+  beginGame(generateRoundData, gameRule);
 }
 
 export default initGame;

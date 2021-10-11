@@ -1,5 +1,7 @@
-import { generateRandomNumber } from '../utils.js';
+import generateRandomNumber from '../utils.js';
 import beginGame from '../game-engine.js';
+
+const gameRule = 'What is the result of the expression?';
 
 function calcEquation(operation, firstNumber, secondNumber) {
   let value;
@@ -31,9 +33,7 @@ function generateRoundData() {
 }
 
 function initGame() {
-  const gameRule = 'What is the result of the expression?';
-  const numberOfQuestions = 3;
-  beginGame(generateRoundData, gameRule, numberOfQuestions);
+  beginGame(generateRoundData, gameRule);
 }
 
 export default initGame;

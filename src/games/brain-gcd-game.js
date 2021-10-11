@@ -1,5 +1,7 @@
-import { generateRandomNumber } from '../utils.js';
+import generateRandomNumber from '../utils.js';
 import beginGame from '../game-engine.js';
+
+const gameRule = 'Find the greatest common divisor of given numbers.';
 
 function calcGcd(firstNum, secondNum) {
   if (!secondNum) {
@@ -18,9 +20,7 @@ function generateRoundData() {
 }
 
 function initGame() {
-  const gameRule = 'Find the greatest common divisor of given numbers.';
-  const numberOfQuestions = 3;
-  beginGame(generateRoundData, gameRule, numberOfQuestions);
+  beginGame(generateRoundData, gameRule);
 }
 
 export default initGame;
