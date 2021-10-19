@@ -18,7 +18,7 @@ function generateRoundData() {
   const startNumber = generateRandomNumber(0, 100);
   const step = generateRandomNumber(0, 10);
   const progression = generateProgression(startNumber, step, 9);
-  const droppedNumIndex = generateRandomNumber(0, 9);
+  const droppedNumIndex = generateRandomNumber(0, progression.length);
   const answer = progression[droppedNumIndex];
   progression[droppedNumIndex] = '..';
   return {
